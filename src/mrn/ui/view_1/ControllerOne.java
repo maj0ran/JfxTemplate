@@ -5,12 +5,12 @@ import javafx.scene.input.MouseEvent;
 import mrn.data.Model;
 import mrn.ui.base.IController;
 
-public class ControllerOne implements IController<SampleViewOne, Model> {
-    public ControllerOne(SampleViewOne view, Model model) {
-        init(view, model);
+public class ControllerOne implements IController<Model, SampleViewOne> {
+    public ControllerOne(Model model, SampleViewOne view) {
+        init(model, view);
     }
 
-    public void init(SampleViewOne view, Model model) {
+    public void init(Model model, SampleViewOne view) {
         view.update();
 
         view.btn.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event e) -> {

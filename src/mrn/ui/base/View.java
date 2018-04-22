@@ -12,17 +12,12 @@ import javafx.scene.Group;
  *           type of your model
  */
 public abstract class View<M> {
-    private Group root = new Group();
     protected M model;
 
     protected IController ctrl;
 
     protected View() {
         this.init();
-    }
-
-    public Group getRoot() {
-        return this.root;
     }
 
     /**
@@ -39,4 +34,5 @@ public abstract class View<M> {
     protected void setController(IController ctrl) {
         this.ctrl = ctrl;
     }
+
 }

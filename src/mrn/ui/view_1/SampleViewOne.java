@@ -17,7 +17,11 @@ public class SampleViewOne extends View<Model> {
 
     public SampleViewOne(Model model) {
         this.setModel(model);
-        this.setController(new ControllerOne(this, model));
+        this.setController(new ControllerOne(model, this));
+    }
+
+    public GridPane getRoot() {
+        return this.layout;
     }
 
     @Override
@@ -28,11 +32,6 @@ public class SampleViewOne extends View<Model> {
 
         layout.add(label, 0, 0);
         layout.add(btn, 0, 1);
-        layout.minHeight(500);
-        layout.setAlignment(Pos.BOTTOM_LEFT);
-        this.getRoot().getChildren().add(layout);
-
-
     }
 
     public void update() {

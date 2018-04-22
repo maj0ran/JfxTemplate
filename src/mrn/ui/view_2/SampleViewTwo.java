@@ -18,7 +18,11 @@ public class SampleViewTwo extends View<Model> {
 
     public SampleViewTwo (Model model) {
         this.setModel(model);
-        this.setController(new ControllerTwo(this, model));
+        this.setController(new ControllerTwo(model, this));
+    }
+
+    public VBox getRoot() {
+        return this.layout;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class SampleViewTwo extends View<Model> {
         btn = new Button("Click Me!");
 
         this.layout.getChildren().addAll(c, btn);
-        this.getRoot().getChildren().add(layout);
+
     }
 
     public void update() {
