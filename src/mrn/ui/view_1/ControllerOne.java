@@ -1,23 +1,37 @@
 package mrn.ui.view_1;
 
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import mrn.data.Model;
-import mrn.ui.base.IController;
+import mrn.ui.base.Controller;
 
-public class ControllerOne implements IController<Model, SampleViewOne> {
+import java.beans.PropertyChangeEvent;
+
+public class ControllerOne extends Controller<Model, SampleViewOne>  {
+
     public ControllerOne(Model model, SampleViewOne view) {
-        init(model, view);
+        super(model, view);
     }
 
-    public void init(Model model, SampleViewOne view) {
-        view.update();
+    protected void init(Model model, SampleViewOne view) {
 
-        view.btn.addEventHandler(MouseEvent.MOUSE_CLICKED, (Event e) -> {
-                    model.incValue();
-                    System.out.println("Value: " + model.getValue());
-                    view.update();
-                }
+        view.update();
+        view.btn.addEventHandler(MouseEvent.MOUSE_CLICKED, (EventHandler<Event>) this::pressButton
         );
+    }
+
+    public void pressButton(Event e) {
+
+        System.out.println(e.getSource().toString());
+        model.incValue();
+        view.update();
+        change.firePropertyChange(null, null, null);
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        System.out.println(evt.getPropertyName());
+        System.out.println("CTRL ONE: " + evt.getOldValue());
     }
 }

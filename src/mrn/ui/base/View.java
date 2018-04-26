@@ -1,7 +1,5 @@
 package mrn.ui.base;
 
-import javafx.scene.Group;
-
 /**
  * The base class to construct a view. A View may contain of multiple GUI Elements and has a Model
  * and a Controller. The Type of the Model is defined by the Generic Parameter. The concrete Controller
@@ -13,8 +11,7 @@ import javafx.scene.Group;
  */
 public abstract class View<M> {
     protected M model;
-
-    protected IController ctrl;
+    protected Controller ctrl;
 
     protected View() {
         this.init();
@@ -31,8 +28,10 @@ public abstract class View<M> {
         this.model = data;
     }
 
-    protected void setController(IController ctrl) {
+    protected void setController(Controller ctrl) {
         this.ctrl = ctrl;
     }
+
+    public abstract <T> T getRoot();
 
 }
